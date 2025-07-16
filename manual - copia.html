@@ -32,6 +32,95 @@
       color: var(--primary-color);
     }
 
+    /* HEADER Y MENÚ */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: var(--bg-content);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      border-bottom: 2px solid var(--primary-color);
+      backdrop-filter: blur(6px);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-container img {
+      height: 50px;
+      margin-right: 12px;
+    }
+
+    .logo-container span {
+      color: #03A9F4;
+      font-size: 1.3em;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: #e0e0e0;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    nav a::after {
+      content: "";
+      display: block;
+      height: 2px;
+      background: var(--accent-color);
+      width: 0;
+      transition: width 0.3s ease;
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+    }
+
+    nav a:hover {
+      color: var(--accent-color);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* MENÚ HAMBURGUESA */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+    }
+
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px 0;
+    }
+
+    .mobile-nav a {
+      margin-left: 0;
+    }
+
+    /* CARDS */
     .mod-card {
       background-color: var(--bg-card);
       border-radius: 12px;
@@ -81,25 +170,83 @@
       font-size: 0.9em;
       color: #ccc;
     }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+        margin-top: 8px;
+      }
+
+      .mobile-nav {
+        display: flex;
+        width: 100%;
+        border-top: 1px solid #444;
+      }
+
+      .mod-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .mod-card img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 16px;
+      }
+
+      .container {
+        padding: 20px 12px;
+      }
+    }
   </style>
 </head>
 <body>
-  <header style="background-color: #1e1e1e; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #2196F3;">
-  <div style="display: flex; align-items: center;">
-    <img src="https://i.ibb.co/5xJ1gLC0/logo500.png" alt="ARBus Mods Logo" style="height: 40px; margin-right: 12px;">
-    <span style="color: #FFD700; font-family: 'Montserrat', sans-serif; font-size: 1.2em; font-weight: bold;">ARBus Mods</span>
-  </div>
-  <nav>
-    <a href="index.html" style="color: #e0e0e0; text-decoration: none; margin-left: 20px; font-weight: 500;" onmouseover="this.style.color='#FFD700'" onmouseout="this.style.color='#e0e0e0'">Inicio</a>
-    <a href="descargas.html" style="color: #e0e0e0; text-decoration: none; margin-left: 20px; font-weight: 500;" onmouseover="this.style.color='#FFD700'" onmouseout="this.style.color='#e0e0e0'">Descargas</a>
-    <a href="manual.html" style="color: #e0e0e0; text-decoration: none; margin-left: 20px; font-weight: 500;" onmouseover="this.style.color='#FFD700'" onmouseout="this.style.color='#e0e0e0'">Manual</a>
-    <a href="aportes.html" style="color: #e0e0e0; text-decoration: none; margin-left: 20px; font-weight: 500;" onmouseover="this.style.color='#FFD700'" onmouseout="this.style.color='#e0e0e0'">Aportar</a>
-  </nav>
-</header>
+
+  <!-- BARRA SUPERIOR -->
+  <header>
+    <div class="logo-container">
+      <img src="https://i.ibb.co/5xJ1gLC0/logo500.png" alt="ARBus Mods Logo">
+      <span>ARBus Mods</span>
+    </div>
+
+    <!-- MENÚ PARA ESCRITORIO -->
+    <nav class="desktop-nav">
+      <a href="index.html">Inicio</a>
+      <a href="descargas.html">Descargas</a>
+      <a href="manual.html">Manual</a>
+      <a href="aportes.html">Aportar</a>
+    </nav>
+
+    <!-- HAMBURGUESA -->
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <!-- MENÚ MÓVIL -->
+    <nav class="mobile-nav" id="mobileNav">
+      <a href="index.html">Inicio</a>
+      <a href="descargas.html">Descargas</a>
+      <a href="manual.html">Manual</a>
+      <a href="aportes.html">Aportar</a>
+    </nav>
+  </header>
+
+  <!-- CONTENIDO -->
   <div class="container">
     <h1>Descargas ARBus Mods</h1>
 
-    <!-- MOD 1 -->
     <div class="mod-card">
       <img src="https://i.ibb.co/5xJ1gLC0/logo500.png" alt="New Isidro V3">
       <div class="mod-info">
@@ -122,7 +269,6 @@
       </div>
     </div>
 
-    <!-- MOD 2 -->
     <div class="mod-card">
       <img src="https://i.ibb.co/nM85fb1W/imagen-2025-06-21-004858134.png" alt="Skin Edit Pack">
       <div class="mod-info">
@@ -132,7 +278,6 @@
       </div>
     </div>
 
-    <!-- MOD 3 -->
     <div class="mod-card">
       <img src="https://i.ibb.co/LXMfhfpz/imagen-2025-06-21-005650603.png" alt="Neumáticos y Llantas">
       <div class="mod-info">
@@ -143,6 +288,13 @@
       </div>
     </div>
   </div>
+
+  <!-- JS PARA EL MENÚ -->
+  <script>
+    function toggleMenu() {
+      const mobileNav = document.getElementById("mobileNav");
+      mobileNav.style.display = mobileNav.style.display === "flex" ? "none" : "flex";
+    }
+  </script>
 </body>
 </html>
-
